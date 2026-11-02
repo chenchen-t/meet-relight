@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meet-Relight · M1 relight-shader playground</title>
+    <link rel="icon" href="data:," />
+    <style>
+      html, body { margin: 0; height: 100%; background: #111; color: #ddd; font: 12px/1.4 system-ui, sans-serif; }
+      #app { display: grid; grid-template-columns: 1fr 320px; height: 100vh; }
+      #view { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+      canvas#gfx { max-width: 100%; max-height: 100%; background: #000; }
+      #hud { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,.65); padding: 8px 10px; border-radius: 6px; white-space: pre; font-family: ui-monospace, monospace; }
+      #panel { overflow-y: auto; padding: 10px 12px; background: #1a1a1a; border-left: 1px solid #333; }
+      fieldset { border: 1px solid #333; border-radius: 6px; margin: 0 0 10px; padding: 6px 8px; }
+      legend { color: #9cf; padding: 0 4px; }
+      .row { display: grid; grid-template-columns: 92px 1fr 44px; align-items: center; gap: 6px; margin: 3px 0; }
+      .row input[type=range] { width: 100%; }
+      .row output { text-align: right; font-family: ui-monospace, monospace; color: #aaa; }
+      select { width: 100%; background: #222; color: #ddd; border: 1px solid #444; }
+      #matcap { width: 128px; height: 128px; image-rendering: pixelated; border: 1px solid #333; display: block; margin: 4px auto; }
+      pre#json { font-size: 10px; max-height: 220px; overflow: auto; background: #111; padding: 6px; border-radius: 4px; }
+      #err { position: absolute; bottom: 10px; left: 10px; color: #f77; white-space: pre-wrap; }
+      .ok { color: #7f7; } .bad { color: #f77; }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div id="view">
+        <canvas id="gfx"></canvas>
+        <div id="hud">starting…</div>
+        <div id="err"></div>
+      </div>
+      <div id="panel"></div>
+    </div>
+    <script type="module" src="/src/playground.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "@relight/demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "assets": "node scripts/fetch-assets.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "@litertjs/core": "^2.6.0",
+    "@mediapipe/tasks-vision": "^1.1.1",
+    "@relight/gpu-core": "workspace:*",
+    "@relight/live-perception": "workspace:*",
+    "@relight/relight-shader": "workspace:*",
+    "@relight/shared-schema": "workspace:*"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "meet-relight",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @relight/demo dev",
+    "assets": "pnpm --filter @relight/demo assets",
+    "build": "pnpm -r build",
+    "preview": "pnpm --filter @relight/demo preview",
+    "test": "vitest run",
+    "typecheck": "tsc -p apps/demo/tsconfig.json --noEmit",
+    "graphs": "bash native/tensor_graphs/build.sh"
+  },
+  "devDependencies": {
+    "@webgpu/types": "^0.1.74",
+    "puppeteer-core": "^25.16.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  },
+  "description": "Real-time portrait relighting in the browser with LiteRT.js (WebGPU), the LiteRT Tensor API, MediaPipe models and on-device Gemma 4.",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

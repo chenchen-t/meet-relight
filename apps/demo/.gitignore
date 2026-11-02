@@ -1,0 +1,14 @@
+public/mediapipe/
+public/litert/
+# Downloaded models (npm run assets). The tiny Tensor API graphs and the pinned
+# face models are committed so a fresh clone works without a Bazel build.
+public/models/*
+!public/models/seg_pre.tflite
+!public/models/seg_post.tflite
+!public/models/face_det_pre.tflite
+!public/models/face_det_post.tflite
+!public/models/face_lm_post.tflite
+!public/models/face_landmarker/
+public/models/face_landmarker/*
+!public/models/face_landmarker/face_detector.tflite
+!public/models/face_landmarker/face_landmarks_detector_b1.tflite

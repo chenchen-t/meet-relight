@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meet-Relight · Live relighting with LiteRT.js &amp; MediaPipe</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body>
+    <div id="app">
+      <div id="view">
+        <canvas id="gfx"></canvas>
+        <div id="hud">starting…</div>
+        <div id="err"></div>
+      </div>
+      <div id="panel"></div>
+    </div>
+    <video id="cam" playsinline muted></video>
+    <script type="module" src="/src/live.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://meet-relight/target_profile.schema.json",
+  "title": "TargetProfile",
+  "description": "Frozen global contract (design doc §4.1). Produced by ref-analyzer, consumed by live-perception, relight-shader, studio-coach and grid-harmonizer.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["subject_type", "lighting_rig", "color_dna"],
+  "definitions": {
+    "rgb": {
+      "type": "array",
+      "items": { "type": "number", "minimum": 0 },
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "light": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "role", "azimuth_deg", "elevation_deg", "intensity",
+        "color_rgb", "softness", "shape", "assigned_execution"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "role": { "enum": ["key", "fill", "rim"] },
+        "azimuth_deg": { "type": "number", "minimum": -180, "maximum": 180, "description": "0 = camera axis, negative = subject's right (viewer's left), positive = subject's left" },
+        "elevation_deg": { "type": "number", "minimum": -90, "maximum": 90 },
+        "clock_direction": { "type": "string", "pattern": "^(1[0-2]|[1-9]):(00|30)$" },
+        "intensity": { "type": "number", "minimum": 0 },
+        "color_rgb": { "$ref": "#/definitions/rgb" },
+        "kelvin": { "type": "number", "minimum": 1000, "maximum": 20000 },
+        "softness": { "type": "number", "minimum": 0, "maximum": 1 },
+        "shape": { "enum": ["octagon", "circle_ring", "rect_softbox", "stripbox", "point"] },
+        "assigned_execution": { "enum": ["physical_lamp", "virtual_shader"] }
+      }
+    }
+  },
+  "properties": {
+    "subject_type": { "enum": ["portrait", "object_diffuse", "object_specular", "object_transparent"] },
+    "lighting_rig": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ambient_rgb", "lights"],
+      "properties": {
+        "ambient_rgb": { "$ref": "#/definitions/rgb" },
+        "key_to_fill_ratio": { "type": "number", "minimum": 0 },
+        "lights": { "type": "array", "maxItems": 3, "items": { "$ref": "#/definitions/light" } }
+      }
+    },
+    "color_dna": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lab_mean", "lab_std"],
+      "properties": {
+        "lab_mean": { "type": "array", "items": { "type": "number" }, "minItems": 3, "maxItems": 3 },
+        "lab_std": { "type": "array", "items": { "type": "number", "minimum": 0 }, "minItems": 3, "maxItems": 3 },
+        "split_toning": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["shadow_tint_rgb", "highlight_tint_rgb", "balance"],
+          "properties": {
+            "shadow_tint_rgb": { "$ref": "#/definitions/rgb" },
+            "highlight_tint_rgb": { "$ref": "#/definitions/rgb" },
+            "balance": { "type": "number", "minimum": -1, "maximum": 1 }
+          }
+        },
+        "luma_quantiles": { "type": "array", "items": { "type": "number", "minimum": 0, "maximum": 100 }, "minItems": 5, "maxItems": 5 },
+        "fade_amount": { "type": "number", "minimum": 0, "maximum": 1 },
+        "grain_amount": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    }
+  }
+}

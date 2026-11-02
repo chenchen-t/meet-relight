@@ -1,0 +1,27 @@
+Meet-Relight
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This project uses or redistributes the following third-party components:
+
+- MediaPipe models (Apache License 2.0), https://github.com/google-ai-edge/mediapipe
+  - selfie_multiclass_256x256.tflite (Image Segmenter), downloaded by `pnpm assets`
+  - face_landmarker.task (Face Landmarker), downloaded by `pnpm assets`
+  - apps/demo/public/models/face_landmarker/face_detector.tflite (extracted from face_landmarker.task)
+  - apps/demo/public/models/face_landmarker/face_landmarks_detector_b1.tflite
+    (from face_landmarker.task, batch dimension pinned to 1 by native/tensor_graphs/static_batch.cc)
+  - packages/live-perception/scripts/canonical_face_model.obj (canonical face mesh)
+
+- LiteRT and LiteRT.js (Apache License 2.0), https://github.com/google-ai-edge/LiteRT
+  - @litertjs/core runtime (npm dependency); its wasm is copied by `pnpm assets`
+  - The LiteRT Tensor API is used at build time by native/tensor_graphs
+
+- MediaPipe GenAI web runtime (Apache License 2.0), via the LiteRT samples
+  https://github.com/google-ai-edge/litert-samples
+  - apps/demo/public/genai/genai_js.js, apps/demo/public/genai/genai_wasm_internal.js
+
+- @mediapipe/tasks-vision (Apache License 2.0), npm dependency (fallback perception path)
+
+- Gemma 4 models are downloaded at runtime and are subject to the Gemma Terms of Use,
+  https://ai.google.dev/gemma/terms
+
+- Background images in apps/demo/public/backgrounds/ were AI-generated for this project.
